@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    {% if events_list %}
+    	<h1>Cases</h1>
+	    {% for event in events_list %}
+	    	{% if user.is_authenticated %}
+	    		Yellow
+	    	{% else %}
+	    		Blue
+	    	{% endif %}
+	    		
+    		<h5><a href="/{{ event.id }}/">{{ event.name }}</a></h5>
+		    	
+			<b>Description: </b> {{event.description}} <br>
+
+	    {% endfor %}
+	    </ul>
+	{% else %}
+	    <p>No cases are available.</p>
+	{% endif %}<br>
+{% endblock %}

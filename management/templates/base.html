@@ -1,0 +1,38 @@
+{% load staticfiles %}
+<html>
+    <head>
+        <title>States' Rights</title>
+        <!-- Compiled and minified CSS -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+
+      <!-- Compiled and minified JavaScript -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+              
+
+        <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+        <script src="{% static 'js/jquery-1.7.1.min.js' %}"></script>
+        {% block head %}{% endblock %}
+    </head>
+    <body>
+        <nav>
+            <div class="nav-wrapper">
+              <a href="/" class="brand-logo">&nbsp; Seniors Without Walls</a>
+              <ul id="nav-mobile" class="right hide-on-med-and-down">
+              	{% if user.is_authenticated %}
+					<li><a href="{% url 'logout' %}">Log out</a></li>
+				{% else %}
+					<li><a href="{% url 'login' %}">Log in</a></li>
+				{% endif %}
+              </ul>
+            </div>
+        </nav>
+        <div class="content container">
+            <div class="row">
+                <div class="col-md-8">
+                    {% block content %}
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

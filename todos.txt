@@ -1,0 +1,6 @@
+1. Refactor Model so that you extend the original provided Django User Model
+2. Make the necessary Migrations
+3. Mess with Admin interface
+4. Create Login/Sign up
+5. Create Index view and only allow you to add stuff if you're logged in
+6. Make sure the archive feature works
