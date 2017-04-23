@@ -10,7 +10,12 @@
               
 
         <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+        
+        <link rel='stylesheet' href="{% static 'css/fullcalendar.min.css' %}" />
         <script src="{% static 'js/jquery-1.7.1.min.js' %}"></script>
+        <script src="{% static 'js/moment.min.js' %}"></script>
+        <script src="{% static 'js/fullcalendar.min.js' %}"></script>
+        <title>{% block title %}{% endblock %}</title>
         {% block head %}{% endblock %}
     </head>
     <body>
@@ -19,10 +24,11 @@
               <a href="/" class="brand-logo">&nbsp; Seniors Without Walls</a>
               <ul id="nav-mobile" class="right hide-on-med-and-down">
               	{% if user.is_authenticated %}
-					<li><a href="{% url 'logout' %}">Log out</a></li>
-				{% else %}
-					<li><a href="{% url 'login' %}">Log in</a></li>
-				{% endif %}
+      					 <li><a href="{% url 'logout' %}">Log out</a></li>
+        				{% else %}
+      					 <li><a href="{% url 'login' %}">Log in</a></li>
+        				{% endif %}
+                <li><a href="{% url 'signup' %}">Sign up</a></li>
               </ul>
             </div>
         </nav>

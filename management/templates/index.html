@@ -2,9 +2,9 @@
 
 {% block content %}
 
-    {% if events_list %}
-    	<h1>Cases</h1>
-	    {% for event in events_list %}
+    {% if user_events_list %}
+    	<h1>Event</h1>
+	    {% for event in user_events_list %}
 	    	{% if user.is_authenticated %}
 	    		Yellow
 	    	{% else %}

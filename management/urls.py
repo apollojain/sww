@@ -7,7 +7,7 @@ from . import views
 urlpatterns = [
 	# ex: /
 	url(r'^login/$', auth_views.login, {'template_name': 'login.html'}, name='login'),
-    # url(r'^logout/$', auth_views.logout, name='logout'),
+    url(r'^signup/$', views.create, name='signup'),
     url(r'^logout/$', auth_views.logout, {'next_page': '/'}, name='logout'),
     url(r'^$', views.index, name='home'),
     url(r'^(?P<event_id>[0-9]+)/$', views.detail, name='event_detail'),
