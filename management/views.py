@@ -32,11 +32,32 @@ def index(request):
 
 def detail(request, event_id):
 	try: 
+		boolean = False
 		event = Event.objects.get(pk=event_id)
 		prev_date = timezone.now() - timedelta(days = 2)
+		if request.user.is_authenticated: 
+			p_list = Person.objects.filter(user = request.user)
+			if len(p_list) > 0: 
+				p = p_list[0]
+				if len(p.events.filter(pk = event_id)) > 0: 
+					boolean = True
 	except Event.DoesNotExist:
 		raise Http404("Event does not exist")
-	return render(request, 'detail.html', {'event': event})
+	return render(request, 'detail.html', {'event': event, "boolean": boolean})
+
+def toggle(request, event_id):
+	if request.user.is_authenticated: 
+		p_list = Person.objects.filter(user = request.user)
+		if len(p_list) > 0: 
+			print "Checkpoint 3"
+			p = p_list[0]
+			qs = p.events.filter(pk = event_id)
+			if len(qs) > 0: 
+				p.events.remove(qs[0])
+			else: 
+				event = Event.objects.filter(pk = event_id)[0]
+				p.events.add(event)
+	return redirect('event_detail', event_id)
 
 def create(request): 
 	if request.method == 'POST':

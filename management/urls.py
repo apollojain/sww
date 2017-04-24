@@ -11,4 +11,6 @@ urlpatterns = [
     url(r'^logout/$', auth_views.logout, {'next_page': '/'}, name='logout'),
     url(r'^$', views.index, name='home'),
     url(r'^(?P<event_id>[0-9]+)/$', views.detail, name='event_detail'),
+    url(r'^toggle/(?P<event_id>[0-9]+)/$', views.toggle, name='toggle'),
+    
 ]
