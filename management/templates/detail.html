@@ -9,9 +9,9 @@
 	{% if user.is_authenticated %}
 
 		{% if boolean %}
-			<a href="/toggle/{{event.id}}">Remove Event</a>
+			<a href="/toggle/{{event.id}}">Unregister for Event</a>
 		{% else %}
-			<a href="/toggle/{{event.id}}">Add Event</a>
+			<a href="/toggle/{{event.id}}">Register for Event</a>
 		{% endif %}
 	{% endif %}
 		
