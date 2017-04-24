@@ -15,60 +15,23 @@
 			editable: true,
 			eventLimit: true, // allow "more" link when too many events
 			events: [
-				{
-					title: 'All Day Event',
-					start: '2017-04-01'
-				},
-				{
-					title: 'Long Event',
-					start: '2017-04-07',
-					end: '2017-04-10'
-				},
-				{
-					id: 999,
-					title: 'Repeating Event',
-					start: '2017-04-09T16:00:00'
-				},
-				{
-					id: 999,
-					title: 'Repeating Event',
-					start: '2017-04-16T16:00:00'
-				},
-				{
-					title: 'Conference',
-					start: '2017-04-11',
-					end: '2017-04-13'
-				},
-				{
-					title: 'Meeting',
-					start: '2017-04-12T10:30:00',
-					end: '2017-04-12T12:30:00'
-				},
-				{
-					title: 'Lunch',
-					start: '2017-04-12T12:00:00'
-				},
-				{
-					title: 'Meeting',
-					start: '2017-04-12T14:30:00'
-				},
-				{
-					title: 'Happy Hour',
-					start: '2017-04-12T17:30:00'
-				},
-				{
-					title: 'Dinner',
-					start: '2017-04-12T20:00:00'
-				},
-				{
-					title: 'Birthday Party',
-					start: '2017-04-13T07:00:00'
-				},
-				{
-					title: 'Click for Google',
-					url: 'http://google.com/',
-					start: '2017-04-28'
-				}
+			    {% for event in user_events_list %}
+			    	{
+			    		title: "{{event.name|safe}}", 
+			    		start: "{{event.datetime|date:"Y-m-d"}}T{{ event.datetime|time:"H:i" }}", 
+			    		url: "/{{event.id}}", 
+			    		color: "#ee6e73",
+			    	},
+			    	
+			    {% endfor %}
+			    {% for event in regular_events_list %}
+			    	{
+			    		title: "{{event.name|safe}}", 
+			    		start: "{{event.datetime|date:"Y-m-d"}}T{{ event.datetime|time:"H:i" }}", 
+			    		url: "/{{event.id}}", 
+			    	},
+			    	
+			    {% endfor %}
 			]
 		});
 		
@@ -95,25 +58,7 @@
 
 {% block content %}
 
-    {% if user_events_list %}
-    	<h1>Event</h1>
-	    {% for event in user_events_list %}
-	    	{% if user.is_authenticated %}
-	    		Yellow
-	    	{% else %}
-	    		Blue
-	    	{% endif %}
-	    	{{event.datetime|date:"D d M Y"}}T{{ event.datetime|time:"H:i" }}
-	    		
-    		<h5><a href="/{{ event.id }}/">{{ event.name }}</a></h5>
-		    	
-			<b>Description: </b> {{event.description}} <br>
-
-	    {% endfor %}
-	    </ul>
-	{% else %}
-	    <p>No cases are available.</p>
-	{% endif %}<br>
+	<center><h1>Events</h1></center>
 	<div id='calendar'></div>
 
 
