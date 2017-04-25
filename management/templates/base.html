@@ -1,7 +1,7 @@
 {% load staticfiles %}
 <html>
     <head>
-        <title>States' Rights</title>
+        <title>Seniors Without Walls</title>
         <!-- Compiled and minified CSS -->
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
 
@@ -22,8 +22,11 @@
         <nav>
             <div class="nav-wrapper">
               <a href="/" class="brand-logo">&nbsp; Seniors Without Walls</a>
+
               <ul id="nav-mobile" class="right hide-on-med-and-down">
-              	{% if user.is_authenticated %}
+              	<li><a href="{% url 'about' %}">About</a></li>
+                {% if user.is_authenticated %}
+
       					 <li><a href="{% url 'logout' %}">Log out</a></li>
         				{% else %}
       					 <li><a href="{% url 'login' %}">Log in</a></li>
